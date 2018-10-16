@@ -8,6 +8,7 @@ handlers:
   upload: favicon\.ico
 - url: /style\.css
   static_files: style.css
+  upload: style\.css
 - url: /(.+\.php)$
   script: \1
 - url: /.*
