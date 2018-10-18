@@ -36,7 +36,7 @@ curl_close($ch);
     if ($responseCode != 200) echo $response;
     else {
       $client = json_decode($response);
-      var_dump($client);
+      #var_dump($client);
       $numServers = count($client->{'guilds'});
     }
   ?>
