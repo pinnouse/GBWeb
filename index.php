@@ -72,7 +72,9 @@ curl_close($ch);
             ?>
           </span> server(s)!</li>
           <li>AniList API integration for searching anime</li>
-          <li>ChatBot - just use <strong>@ZeroTwo#5534</strong></li>
+          <li>ChatBot - just mention on a server using: <strong>@<?php
+            echo $client->{'tag'}
+          ?></strong></li>
           <li>Music Streaming via YouTube</li>
           <li>League API (WIP)</li>
         </ul>
