@@ -49,7 +49,11 @@ curl_close($ch);
 
   <div class="tree">
     <div class="image-adjust">
-      <img src="https://cdn.discordapp.com/avatars/456124032866320393/67b2fb0201da7de661be0d7166ecc2fa.png?size=2048" alt="Zero Two Bot Avatar" />
+      <img
+        src=<?php
+          echo "\"" . $client->{'avatar'} . "\""
+        ?>
+        alt="Zero Two Bot Avatar" />
     </div>
     <ul>
       <li><a href="#features" class="pageLink">Features</a></li>
