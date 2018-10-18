@@ -9,6 +9,10 @@ handlers:
 - url: /style\.css
   static_files: style.css
   upload: style\.css
+- url: /(.+\.(gif|png|jpg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg)$
+  application_readable: true
 - url: /(.+\.php)$
   script: \1
 - url: /.*
