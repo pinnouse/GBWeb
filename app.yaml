@@ -3,17 +3,23 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
-- url: /style\.css
-  static_files: style.css
-  upload: style\.css
-- url: /(.+\.(gif|png|jpg))$
+- url: /(.+\.(gif|png|jpg|ico))$
   static_files: \1
-  upload: .+\.(gif|png|jpg)$
+  upload: .+\.(gif|png|jpg|ico)$
   application_readable: true
+- url: /(.+\.(js|css))$
+  static_files: \1
+  upload: .+\.(js|css)$
 - url: /(.+\.php)$
   script: \1
-- url: /.*
-  script: index.php
+- url: /
+  static_files: index.html
+  upload: index.html
+- url: /offline
+  static_files: offline/index.html
+  upload: offline/index.html
+- url: /reinabot
+  static_files: reinabot/index.html
+  upload: reinabot/index.html
+- url: /zerotwo
+  script: zerotwo/index.php
