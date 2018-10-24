@@ -44,10 +44,6 @@ curl_close($ch);
 
   <div id="background"></div>
 
-  <header>
-    <h1>Welcome to the Zero Two (002) Discord Bot home page!</h1>
-  </header>
-
   <div class="tree">
     <div class="image-adjust">
       <img
