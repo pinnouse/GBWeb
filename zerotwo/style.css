@@ -32,12 +32,6 @@ a {
   filter: blur(16px);
 }
 
-header {
- position: absolute;
- top: 0;
- left: 0; 
-}
-
 .tree {
   display: flex;
   align-items: center;
@@ -100,6 +94,11 @@ header {
   position: relative;
   width: 13vw;
   padding: 1.5vw;
+}
+
+.tree a.active {
+  background: #ffffff;
+  color: #1f1f1f;
 }
 
 .tree li:hover > a::before {
@@ -196,35 +195,65 @@ header {
 }
 
 .view div > h2 {
+  z-index: 1;
+  position: relative;
+  margin: 0 auto 0 2vw;
   padding: 2vw;
-  background: #b14242;
-  margin-left: 2vw;
   max-width: 31vw;
+  background: #b14242;
   box-shadow: 2px 3px 13px 2px rgba(24, 24, 24, 0.4);
 }
 
-.view div > h2 a {
+.view div > p {
+  margin: 0 auto 0 2vw;
+  padding: 2vw;
+  max-width: 31vw;
+  color: #3d3d3d;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.876);
+  box-shadow: 2px 5px 13px 2px rgba(24, 24, 24, 0.4);
+}
+
+.view div > p a {
   position: relative;
-  transition: 560ms cubic-bezier(1, 0, 0, 1);
+  padding: 3px;
+  font-size: 18px;
+  background: #bbbbbb;
+  color: #1f1f1f;
+  transition: 560ms ease-in-out;
 }
 
-.view div > h2 a:hover {
+.view div > p a:hover {
   color: #bbbbbb;
+  background: #dfdfdf;
 }
 
-.view div > h2 a::before {
+.view div > p a::before {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 0;
-  border-bottom: 2px solid #ffffff;
-  transition: 560ms cubic-bezier(1, 0, 0, 1);
+  border-bottom: 2px solid #1f1f1f;
+  transition: 360ms ease-in-out;
 }
 
-.view div > h2 a:hover::before {
+.view div > p a:hover::before {
   border-color: #bbbbbb;
   width: 100%;
+}
+
+.view h6 {
+  margin-left: 2vw;
+  max-width: 31vw;
+}
+
+.view span {
+  font-family: 'Oxygen Mono', 'Courier New', Courier, monospace;
+  background: #ffffff;
+  font-weight: 600;
+  padding: 0 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar {
@@ -241,4 +270,10 @@ header {
 
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.876);
+}
+
+@media only screen and (max-width: 763px), (max-height: 673px) {
+  .view:not(.animate) {
+    justify-content: initial;
+  }
 }

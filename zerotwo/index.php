@@ -22,21 +22,21 @@ curl_close($ch);
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Zero Two Bot</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="zerotwo/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Oxygen+Mono" rel="stylesheet">
 </head>
 <body>
   <?php
     if ($responseCode != 200) echo $response;
     else {
       $client = json_decode($response);
-      #var_dump($client);
+      var_dump($client);
       $numServers = count($client->{'guilds'});
     }
   ?>
@@ -56,6 +56,7 @@ curl_close($ch);
         alt="Zero Two Bot Avatar" />
     </div>
     <ul>
+      <li><a href="#about" class="pageLink">About</a></li>
       <li><a href="#features" class="pageLink">Features</a></li>
       <li><a href="#commands" class="pageLink">Commands</a></li>
       <li><a href="#invite" class="pageLink">Invite</a></li>
@@ -64,13 +65,21 @@ curl_close($ch);
   </div>
   <div class="container">
     <div class="view">
+      <div id="about">
+        <h2>ねぇ ダーリン (Hey Darling)~</h2>
+        <p>
+          Hey there, I'm a lovely waifu Discord Bot based on ゼロツー (Zero Two) from ダーリン・イン・ザ・フランキス (Darling in the FranXX).
+          Currently built and maintained by a certain intellectual individual.
+          Operating on <span class="numServers"><?php echo $numServers; ?></span> servers.
+          <br />
+          <br />
+          I was created with love and care.
+        </p>
+        <h6>&COPY; Nicholas Wong 2018. Rights of material used are attributed to their respective creators and owners.</h6>
+      </div>
+
       <div id="features">
         <ul>
-          <li>Serving on <span class="numServers">
-            <?php
-            echo $numServers;
-            ?>
-          </span> server(s)!</li>
           <li>AniList API integration for searching anime</li>
           <li>ChatBot - just mention on a server using: <strong>@<?php
             echo $client->{'tag'}
@@ -95,11 +104,28 @@ curl_close($ch);
       </div>
 
       <div id="invite">
-        <h2>Invite link: <a href="https://inviteLink">link</a></h2>
+        <h2>Invite link</h2>
+        <p>
+          Bring this amazing waifu to your server.
+          <br />
+          <strong><i>Note:</i></strong>
+          Make sure you have 'Manage Server' permission to invite.
+          <br />
+          <br />
+          <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot" target="_blank">Link</a>
+        </p>
       </div>
-
+  
       <div id="source">
-        <h2>View on GitHub: <a href="https://github.com/pinnouse/ZeroTwoBot">Source</a></h2>
+        <h2>View on GitHub</h2>
+        <p>
+          Have a little know-how with programming or some ideas you can bring to life?
+          <br />
+          Zero Two Bot (&TRADE;) is open source!
+          <br />
+          <br />
+          <a href="https://github.com/pinnouse/ZeroTwoBot" target="_blank">Source</a>
+        </p>
       </div>
     </div>
   </div>
@@ -154,7 +180,9 @@ curl_close($ch);
                 $(elem).css("transition", trans);
               });
             });
+            $('.view').removeClass('animate');
           } else {
+            $('.view').addClass('animate');
             if (hash != "#commands")
               $("#commands>.categories>li").removeAttr("style");
             if (hash != "#features")
@@ -163,7 +191,7 @@ curl_close($ch);
         }
       });
 
-      $('a[href="#features"]').click();
+      $('a[href="#about"]').click();
     });
   </script>
 </body>
