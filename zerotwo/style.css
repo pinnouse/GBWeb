@@ -1,11 +1,9 @@
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: relative;
   margin: 0;
-  overflow: hidden;
   color: #ffffff;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 body, p, h1, h2, h3, h4, h5, h6 {
@@ -21,7 +19,7 @@ a {
 
 #background {
   display: block;
-  position: absolute;
+  position: fixed;
   left: -5vw;
   top: -5vw;
   width: 110%;
@@ -30,6 +28,46 @@ a {
   background: #3d3d3d url(promise.png) fixed no-repeat center center;
   background-size: cover;
   filter: blur(16px);
+}
+
+span.arrow {
+  content: "";
+  display: inline-block;
+  position: relative;
+  align-self: center;
+  width: 24px;
+  height: 2px;
+  margin: 0 14px 0 34px;
+  background: #ffffff;
+  transition: 260ms;
+}
+
+span.arrow::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  background: #ffffff;
+  transform: rotate(45deg) translateY(5px);
+}
+
+span.arrow::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  background: #ffffff;
+  transform: rotate(-45deg) translateY(-5px);
+}
+
+div.outer-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .tree {
@@ -147,50 +185,69 @@ a {
   visibility: visible;
 }
 
-.view ul > * {
-  box-shadow: 2px 3px 13px 2px rgba(24, 24, 24, 0.4);
+.view div:not(#features):not(#commands) {
+  transition: 120ms;
+  opacity: 0;
 }
 
-.view ul {
+.view div.active:not(#features):not(#commands) {
+  opacity: 1;
+  transition: 260ms;
+}
+
+.view div > ul {
   list-style-type: none;
   padding: 2vw;
   width: 35vw;
 }
 
-.view ul > li {
+.view #features > ul > * {
+  box-shadow: 2px 3px 13px 2px rgba(24, 24, 24, 0.4);
+}
+
+.view #features > ul > li {
   background: #b14242;
   padding: 18px;
   max-width: 46vw;
   margin: 24px 0;
 }
 
-.view #features ul li {
+.view #features > ul > li {
   position: absolute;
   left: 50vw;
   padding: 0 18px;
 }
 
-.view #features.active ul li {
+.view #features.active > ul > li {
   position: relative;
 }
 
-.view #commands ul.categories li {
+.view #commands > ul.categories > li {
+  position: absolute;
+  left: 50vw;
+  padding: 0 18px;
+}
+
+.view #commands.active > ul.categories > li {
+  background: none;
+  position: relative;
+}
+
+.view #commands ul.categories > li h2 {
+  z-index: 1;
+  position: relative;
+  background: #b14242;
   cursor: pointer;
-  position: absolute;
-  left: 50vw;
-  padding: 0 18px;
-}
-
-.view #commands.active ul.categories li {
-  position: relative;
-}
-
-.view div ul.categories > li h2 {
+  padding: 18px;
+  max-width: 46vw;
+  margin: 24px 0;
   font-size: 16px;
   margin: 0;
+  box-shadow: 2px 3px 13px 2px rgba(24, 24, 24, 0.4);
+  transition: 260ms;
 }
 
-.view div ul.categories > li:hover {
+.view #commands ul.categories > li h2:hover {
   background: #d16d6d;
 }
 
@@ -254,6 +311,106 @@ a {
   font-weight: 600;
   padding: 0 4px;
   border-radius: 3px;
+}
+
+.command-help {
+  display: none;
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+  background: rgb(240, 240, 240);
+  background: rgba(240, 240, 240, 0.654);
+}
+
+.command-help > * {
+  box-shadow: 2px 5px 13px 2px rgba(24, 24, 24, 0.4);
+}
+
+.command-help a {
+  display: flex;
+  align-content: center;
+  background: #b14242;
+  padding: 18px;
+  transition: 260ms;
+}
+
+.command-help a:hover {
+  background: #d16d6d;
+}
+
+.command-help a:hover span.arrow {
+  margin: 0 24px;
+}
+
+.command-help h1 {
+  box-shadow: none;
+  text-align: center;
+  color: #1f1f1f;
+  margin-top: 28px;
+  text-shadow: 2px 3px 10px rgba(24, 24, 24, 0.4);
+}
+
+.command-help table {
+  margin: 4vh auto;
+  padding: 32px;
+  background: #ffffff;
+  color: #1f1f1f;
+  width: 80%;
+  border: none;
+  table-layout: fixed;
+}
+
+.command-help tr {
+  background: #ffeded;
+}
+
+.command-help tr:nth-child(even) {
+  background: #eccece;
+}
+
+.command-help tr:first-child {
+  background: #df7272;
+}
+
+.command-help th {
+  padding: 18px 8px;
+  border: none;
+  font-weight: normal;
+  font-size: 18px;
+  vertical-align: center;
+  text-align: center;
+}
+
+.command-help th:nth-child(1) {
+  width: 20%;
+}
+
+.command-help th:nth-child(2) {
+  width: 40%;
+}
+
+.command-help th:nth-child(3) {
+  width: 10%;
+}
+
+.command-help th:nth-child(4) {
+  width: 15%;
+}
+
+.command-help th:nth-child(5) {
+  width: 15%;
+}
+
+.command-help td {
+  padding: 24px 8px;
+  vertical-align: center;
+  text-align: center;
+}
+
+.command-help td:nth-child(n+2) {
+  border-left: solid 1px #df7272;
 }
 
 ::-webkit-scrollbar {

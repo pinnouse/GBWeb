@@ -37,7 +37,6 @@ curl_close($ch);
     if ($responseCode != 200) echo $response;
     else {
       $client = json_decode($response);
-      var_dump($client);
       $numServers = count($client->{'guilds'});
     }
   ?>
@@ -126,6 +125,13 @@ curl_close($ch);
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    <?php
+      echo 'var commands = ' . json_encode($client->{'commands'});
+    ?>
+    console.log(commands);  
+  </script>
 
   <script type="text/javascript">
     $(document).ready(() => {
