@@ -5,6 +5,8 @@ threadsafe: true
 skip_files:
 - ^(zerotwo)/index\.html$
 - ^\.
+- ^LICENSE
+- ^README\.md
 
 handlers:
 - url: /(.+\.(gif|png|jpg|ico))$
