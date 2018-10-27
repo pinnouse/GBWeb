@@ -82,7 +82,9 @@ curl_close($ch);
               echo $client->{'tag'}
             ?></strong></li>
             <li>Music Streaming via YouTube</li>
-            <li>League API (WIP)</li>
+            <li>NSFW - r34, gelbooru, yandere, safebooru, etc.</li>
+            <li>League of Legends (TBI - too be implemented)</li>
+            <li>Osu! (TBI)</li>
           </ul>
         </div>
   
