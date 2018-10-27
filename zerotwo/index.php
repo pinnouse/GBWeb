@@ -244,8 +244,8 @@ curl_close($ch);
             });
           table.append(`
           <tr>
-            <td>${item.name}</td>
-            <td>${item.description}</td>
+            <td>${item.name || "<i>none</i>"}</td>
+            <td>${item.description || "<i>none</i>"}</td>
             <td>${(item.permissions && item.permissions.length) ? surround(item.permissions.split("+"), "<span>", "</span>", " and ") : "<i>none</i>"}</td>
             <td>${(usages.length) ? surround(usages, "", "", " or ") : "<i>none..?</i>"}</td>
             <td>${(optArguments !== "" || reqArguments !== "") ?
