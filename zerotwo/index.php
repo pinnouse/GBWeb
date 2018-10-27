@@ -128,7 +128,7 @@ curl_close($ch);
 
   <script type="text/javascript">
     <?php
-      echo 'var commands = ' . json_encode($client->{'commands'});
+      echo 'var commands = ' . json_encode($client->{'commands'}) . ';';
     ?>
     console.log(commands);  
   </script>
