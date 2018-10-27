@@ -363,11 +363,11 @@ div.outer-container {
 }
 
 .command-help tr {
-  background: #ffeded;
+  background: #eccece;
 }
 
 .command-help tr:nth-child(even) {
-  background: #eccece;
+  background: #ffeded;
 }
 
 .command-help tr:first-child {
@@ -399,8 +399,54 @@ div.outer-container {
   width: 15%;
 }
 
+
 .command-help th:nth-child(5) {
   width: 15%;
+}
+
+.command-help td:nth-child(3) span {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.command-help td:nth-child(n+4) span {
+  cursor: default;
+  position: relative;
+  line-height: 28px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: rgb(189, 189, 189);
+  background: rgba(167, 167, 167, 0.356);
+  transition: 140ms;
+}
+
+.command-help td:nth-child(n+4) span:hover {
+  color: #ffffff;
+  background: rgb(151, 151, 151);
+  background: rgba(73, 73, 73, 0.452);
+}
+
+.command-help span div.tooltip {
+  pointer-events: none;
+  z-index: 10;
+  position: absolute;
+  padding: 2px 4px;
+  border-radius: 4px 4px 20px 20px;
+  color: #ffffff;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.685);
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  min-width: 100px;
+  max-width: 220px;
+  transition: 260ms;
+}
+
+.command-help span:hover div.tooltip {
+  border-radius: 4px;
+  opacity: 1;
+  top: 100%;
 }
 
 .command-help td {

@@ -87,15 +87,6 @@ curl_close($ch);
 
       <div id="commands">
         <ul class="categories">
-          <li>
-            <h2 class="command-category">Anime</h2>
-          </li>
-          <li>
-            <h2 class="command-category">General</h2>
-          </li>
-          <li>
-            <h2 class="command-category">Voice</h2>
-          </li>
         </ul>
       </div>
 
@@ -126,18 +117,38 @@ curl_close($ch);
     </div>
   </div>
 
-  <script type="text/javascript">
-    <?php
-      echo 'var commands = ' . json_encode($client->{'commands'}) . ';';
-    ?>
-    console.log(commands);  
-  </script>
+  <div class="command-help">
+    <a href="#"><span class="arrow"></span>Back</a>
+    <h1>Name Commands</h1>
+    <table cellspacing="0" cellpadding="0">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Permissions</th>
+        <th>Usage</th>
+        <th>Arguments</th>
+      </tr>
+    </table>
+  </div>
 
   <script type="text/javascript">
+    <?php
+      echo 'var commands = new Map(' . json_encode($client->{'commands'}) . ');';
+      echo 'commands["prefix"] = "' . $client->{'prefix'} . '";';
+    ?>
+
+    //On ready handler
     $(document).ready(() => {
-      //On ready handler
+
+      Array.from(commands.keys()).forEach(cat => {
+        $('#commands>ul.categories').append(
+          `<li>
+          <h2 class="command-category" data-category="${cat}">${cat.charAt(0).toUpperCase()+cat.slice(1)}</h2>
+          </li>`);
+      });
+
       let numServers = parseInt($("span.numServers").html()); //Get the total server count and store the value
-      let duration = 1800; //Animation time in ms
+      let duration = 1200; //Animation time in ms
 
       let updateInterval = (duration > numServers) ? duration / numServers : 17
 
@@ -145,14 +156,23 @@ curl_close($ch);
       let i = 0; //Indexing
       var serverCounter = setInterval(() => {
         i += (updateInterval > 17) ? 1 : 17;
+        
+        let curServers = 0;
         if (duration >= numServers && i < numServers)
-          $("span.numServers").html(i);
+          curServers = i;
         else if (duration < numServers && i < duration)
-          $("span.numServers").html(Math.ceil(i / duration * numServers));
+          curServers = Math.ceil(i / duration * numServers);
         else {
-          $("span.numServers").html(numServers);
+          curServers = numServers;
           clearInterval(serverCounter);
         }
+
+        let output = "";
+        for(var j = 0; j < Math.floor(Math.log10(numServers)) - Math.floor(Math.log10(curServers)); j++)
+          output += "&nbsp;";
+          
+
+        $("span.numServers").html(output + curServers);
       }, updateInterval);
 
       $('a.pageLink').on("click", event => {
@@ -169,6 +189,7 @@ curl_close($ch);
           target.addClass("active");
 
           if (hash == "#commands" || hash == "#features") {
+            $('.view').removeClass('animate');
             $(hash+">ul>li").each((ind, elem) => {
               let trans = "400ms";
               $(elem).css({
@@ -183,19 +204,80 @@ curl_close($ch);
                 $(elem).css("transition", trans);
               });
             });
-            $('.view').removeClass('animate');
           } else {
             $('.view').addClass('animate');
-            if (hash != "#commands")
-              $("#commands>.categories>li").removeAttr("style");
-            if (hash != "#features")
-              $("#features>.categories>li").removeAttr("style");
+            if (hash != "#commands" || hash != "#features");
+              $(hash + ">.categories>li").removeAttr("style");
           }
         }
       });
 
       $('a[href="#about"]').click();
+
+      var table = $('.command-help>table');
+      $('h2.command-category').on("click", event => {
+        let cat = $(event.currentTarget).attr("data-category");
+        $('.command-help>h1').html(`${cat.charAt(0).toUpperCase() + cat.slice(1)} Commands`);
+
+        table.html(`<tr>${$('.command-help>table tr:first-child').html()}</tr>`);
+        commands.get(cat).forEach(item => {
+          let optArguments = "";
+          if (item.optArgs && item.optArgs.length)
+            optArguments = surround(item.optArgs, "&lbrack;", "&rbrack;","+");
+          let reqArguments = "";
+          if (item.reqArgs && item.reqArgs.length)
+            reqArguments = surround(item.reqArgs, "&lang;", "&rang;","+");
+
+          let usages = [];
+          if (item.aliases && item.aliases.length)
+            item.aliases.sort().forEach(alias => {
+              usages.push(`
+                <span data-tooltip="${commands['prefix']}${(item.superCmd && item.superCmd.length) ? item.superCmd[0]+" " : ""}${alias}` +
+                ((optArguments !== "") ? " " + optArguments.split("+").join(" ") : "") +
+                ((reqArguments !== "") ? " " + reqArguments.split("+").join(" ") : "") +
+                `">${alias}</span>
+              `);
+            });
+          table.append(`
+          <tr>
+            <td>${item.name}</td>
+            <td>${item.description}</td>
+            <td>${(item.permissions && item.permissions.length) ? surround(item.permissions.split("+"), "<span>", "</span>", " and ") : "<i>none</i>"}</td>
+            <td>${(usages.length) ? surround(usages, "", "", " or ") : "<i>none..?</i>"}</td>
+            <td>${(optArguments !== "" || reqArguments !== "") ?
+              (optArguments !== "") ? surround(optArguments.split("+"), "<span data-tooltip=\"optional\">", "</span>"):"" +
+              (reqArguments !== "") ? surround(reqArguments.split("+"), "<span data-tooltip=\"required\">", "</span>"):""
+              : "<i>none</i>"}</td>
+          </tr>`);
+        });
+
+        $('span[data-tooltip]').each((ind, elem) => {
+          $(elem).append(`<div class="tooltip">${$(elem).data('tooltip').trim()}</div>`);
+        });
+
+        //Animate table
+        $('.command-help').css({
+          display: 'block',
+          position: 'absolute'
+          }).animate({
+            top: '0vh'
+        }, 460, 'easeOutCubic');
+      });
+
+      $('.command-help>a').on("click", event => {
+        event.preventDefault();
+        $('.command-help').css('position', 'fixed').animate({
+          top: '100vh'
+        }, 580, 'easeInQuart', () => {
+          $('.command-help').removeAttr("style");
+        });
+      });
     });
+
+    function surround(str, pre, suf, delim) {
+      delim = delim || " ";
+      return `${pre}${str.join(suf + delim + pre)}${suf}`;
+    }
   </script>
 </body>
 </html>
