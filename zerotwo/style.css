@@ -167,7 +167,7 @@ div.outer-container {
 .view {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   max-width: 46vw;
   width: 100%;
   height: 100%;
@@ -319,9 +319,10 @@ div.outer-container {
   top: 100vh;
   left: 0;
   right: 0;
-  min-height: 100vh;
+  min-height: 99vh;
   background: rgb(240, 240, 240);
   background: rgba(240, 240, 240, 0.654);
+  border-top: 1vh solid #6d1515;
 }
 
 .command-help > * {
@@ -330,10 +331,15 @@ div.outer-container {
 
 .command-help a {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
   align-content: center;
   background: #b14242;
   padding: 18px;
-  transition: 260ms;
+  transition: background 260ms;
 }
 
 .command-help a:hover {
@@ -348,7 +354,7 @@ div.outer-container {
   box-shadow: none;
   text-align: center;
   color: #1f1f1f;
-  margin-top: 28px;
+  margin-top: 122px;
   text-shadow: 2px 3px 10px rgba(24, 24, 24, 0.4);
 }
 
@@ -371,7 +377,7 @@ div.outer-container {
 }
 
 .command-help tr:first-child {
-  background: #df7272;
+  background: #e98484;
 }
 
 .command-help th {

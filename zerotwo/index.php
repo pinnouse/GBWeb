@@ -264,6 +264,10 @@ curl_close($ch);
           }).animate({
             top: '0vh'
         }, 460, 'easeOutCubic');
+
+        $('.command-help>a').css('top', '-90px').delay(200).animate({
+          top: '0'
+        }, 360, 'easeOutCubic');
       });
 
       $('.command-help>a').on("click", event => {
@@ -273,6 +277,9 @@ curl_close($ch);
         }, 580, 'easeInQuart', () => {
           $('.command-help').removeAttr("style");
         });
+        $('.command-help>a').animate({
+          top: '-90px'
+        }, 360, 'easeOutCubic');
       });
     });
 
