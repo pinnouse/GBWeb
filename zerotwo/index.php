@@ -43,76 +43,78 @@ curl_close($ch);
 
   <div id="background"></div>
 
-  <div class="tree">
-    <div class="image-adjust">
-      <img
-        src=<?php
-          echo "\"" . $client->{'avatar'} . "\""
-        ?>
-        alt="Zero Two Bot Avatar" />
+  <div class="outer-container">
+    <div class="tree">
+      <div class="image-adjust">
+        <img
+          src=<?php
+            echo "\"" . $client->{'avatar'} . "\""
+          ?>
+          alt="Zero Two Bot Avatar" />
+      </div>
+      <ul>
+        <li><a href="#about" class="pageLink">About</a></li>
+        <li><a href="#features" class="pageLink">Features</a></li>
+        <li><a href="#commands" class="pageLink">Commands</a></li>
+        <li><a href="#invite" class="pageLink">Invite</a></li>
+        <li><a href="#source" class="pageLink">Source</a></li>
+      </ul>
     </div>
-    <ul>
-      <li><a href="#about" class="pageLink">About</a></li>
-      <li><a href="#features" class="pageLink">Features</a></li>
-      <li><a href="#commands" class="pageLink">Commands</a></li>
-      <li><a href="#invite" class="pageLink">Invite</a></li>
-      <li><a href="#source" class="pageLink">Source</a></li>
-    </ul>
-  </div>
-  <div class="container">
-    <div class="view">
-      <div id="about">
-        <h2>ねぇ ダーリン (Hey Darling)~</h2>
-        <p>
-          Hey there, I'm a lovely waifu Discord Bot based on ゼロツー (Zero Two) from ダーリン・イン・ザ・フランキス (Darling in the FranXX).
-          Currently built and maintained by a certain intellectual individual.
-          Operating on <span class="numServers"><?php echo $numServers; ?></span> servers.
-          <br />
-          <br />
-          I was created with love and care.
-        </p>
-        <h6>&COPY; Nicholas Wong 2018. Rights of material used are attributed to their respective creators and owners.</h6>
-      </div>
-
-      <div id="features">
-        <ul>
-          <li>AniList API integration for searching anime</li>
-          <li>ChatBot - just mention on a server using: <strong>@<?php
-            echo $client->{'tag'}
-          ?></strong></li>
-          <li>Music Streaming via YouTube</li>
-          <li>League API (WIP)</li>
-        </ul>
-      </div>
-
-      <div id="commands">
-        <ul class="categories">
-        </ul>
-      </div>
-
-      <div id="invite">
-        <h2>Invite link</h2>
-        <p>
-          Bring this amazing waifu to your server.
-          <br />
-          <strong><i>Note:</i></strong>
-          Make sure you have 'Manage Server' permission to invite.
-          <br />
-          <br />
-          <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot" target="_blank">Link</a>
-        </p>
-      </div>
+    <div class="container">
+      <div class="view">
+        <div id="about">
+          <h2>ねぇ ダーリン (Hey Darling)~</h2>
+          <p>
+            Hey there, I'm a lovely waifu Discord Bot based on ゼロツー (Zero Two) from ダーリン・イン・ザ・フランキス (Darling in the FranXX).
+            Currently built and maintained by a certain intellectual individual.
+            Operating on <span class="numServers"><?php echo $numServers; ?></span> servers.
+            <br />
+            <br />
+            I was created with love and care.
+          </p>
+          <h6>&COPY; Nicholas Wong 2018. Rights of material used are attributed to their respective creators and owners.</h6>
+        </div>
   
-      <div id="source">
-        <h2>View on GitHub</h2>
-        <p>
-          Have a little know-how with programming or some ideas you can bring to life?
-          <br />
-          Zero Two Bot (&TRADE;) is open source!
-          <br />
-          <br />
-          <a href="https://github.com/pinnouse/ZeroTwoBot" target="_blank">Source</a>
-        </p>
+        <div id="features">
+          <ul>
+            <li>AniList API integration for searching anime</li>
+            <li>ChatBot - just mention on a server using: <strong>@<?php
+              echo $client->{'tag'}
+            ?></strong></li>
+            <li>Music Streaming via YouTube</li>
+            <li>League API (WIP)</li>
+          </ul>
+        </div>
+  
+        <div id="commands">
+          <ul class="categories">
+          </ul>
+        </div>
+  
+        <div id="invite">
+          <h2>Invite link</h2>
+          <p>
+            Bring this amazing waifu to your server.
+            <br />
+            <strong><i>Note:</i></strong>
+            Make sure you have 'Manage Server' permission to invite.
+            <br />
+            <br />
+            <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot" target="_blank">Link</a>
+          </p>
+        </div>
+    
+        <div id="source">
+          <h2>View on GitHub</h2>
+          <p>
+            Have a little know-how with programming or some ideas you can bring to life?
+            <br />
+            Zero Two Bot (&TRADE;) is open source!
+            <br />
+            <br />
+            <a href="https://github.com/pinnouse/ZeroTwoBot" target="_blank">Source</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
