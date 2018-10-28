@@ -167,10 +167,15 @@ div.outer-container {
 .view {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   max-width: 46vw;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+}
+
+.view:not(.animate) {
+  justify-content: initial;
 }
 
 .view div:not(.active) {
@@ -478,10 +483,4 @@ div.outer-container {
 
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.876);
-}
-
-@media only screen and (max-width: 763px), (max-height: 673px) {
-  .view:not(.animate) {
-    justify-content: initial;
-  }
 }
