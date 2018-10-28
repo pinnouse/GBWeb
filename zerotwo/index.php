@@ -81,9 +81,11 @@ curl_close($ch);
             <li>ChatBot - just mention on a server using: <strong>@<?php
               echo $client->{'tag'}
             ?></strong></li>
+            <li>Custom Prefixes</li>
+            <li>Multi-Lingual (in development - only supports English for now)</li>
             <li>Music Streaming via YouTube</li>
-            <li>NSFW - r34, gelbooru, yandere, safebooru, etc.</li>
-            <li>League of Legends (TBI - too be implemented)</li>
+            <li>NSFW - danbooru, rule 34, gelbooru, yandere, safebooru, etc.</li>
+            <li>League of Legends (TBI - to be implemented)</li>
             <li>Osu! (TBI)</li>
           </ul>
         </div>
