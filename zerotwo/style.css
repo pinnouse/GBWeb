@@ -334,6 +334,7 @@ div.outer-container {
 }
 
 .command-help a {
+  z-index: 20;
   display: flex;
   position: fixed;
   top: 0;
