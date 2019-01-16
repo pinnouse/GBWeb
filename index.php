@@ -33,8 +33,8 @@ curl_close($ch);
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Oxygen+Mono" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="zerotwo/style.css">
-  <script src="zerotwo/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="index.js"></script>
 </head>
 <body>
   <?php
