@@ -3,7 +3,6 @@ api_version: 1
 threadsafe: true
 
 skip_files:
-- ^(zerotwo)/index\.html$
 - ^\.
 - ^LICENSE
 - ^README\.md
@@ -19,13 +18,4 @@ handlers:
 - url: /(.+\.php)$
   script: \1
 - url: /
-  static_files: index.html
-  upload: index.html
-- url: /offline
-  static_files: offline/index.html
-  upload: offline/index.html
-- url: /reinabot
-  static_files: reinabot/index.html
-  upload: reinabot/index.html
-- url: /zerotwo
-  script: zerotwo/index.php
+  script: index.php
